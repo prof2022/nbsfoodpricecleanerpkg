@@ -2,21 +2,20 @@ from setuptools import setup, find_packages
 from typing import List
 
 with open('README.md', 'r', encoding='utf-8') as f:
-    long_description = f.read()     
-   
+    long_description = f.read()
 
 __version__ = "0.0.4"
-REPO_NAME = "mongodbconnectorpkg"
-PKG_NAME= "databaseautomation"
-AUTHOR_USER_NAME = "sunnysavita10"
-AUTHOR_EMAIL = "sunny.savita@ineuron.ai"
+REPO_NAME = "nbsfoodpricecleanerpkg"
+PKG_NAME = "nbsfoodpricecleaner"
+AUTHOR_USER_NAME = "prof2022"
+AUTHOR_EMAIL = "jibrinharuna07@gmail.com"
 
 setup(
     name=PKG_NAME,
     version=__version__,
     author=AUTHOR_USER_NAME,
     author_email=AUTHOR_EMAIL,
-    description="A python package for connecting with database.",
+    description="A Python package for cleaning and processing NBS food price data.",
     long_description=long_description,
     long_description_content="text/markdown",
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}",
@@ -25,7 +24,4 @@ setup(
     },
     package_dir={"": "src"},
     packages=find_packages(where="src"),
-    )
-
-
-
+)

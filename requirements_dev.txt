@@ -1,17 +1,20 @@
-pymongo
-pymongo[srv]
-dnspython
-pandas
-numpy
-ensure
+# Core requirements
+pandas>=1.3.0
+numpy>=1.21.0
+ensure>=1.0.2
 
+# Optional database dependencies (commented for future use)
+# Uncomment the following lines when database interactions are needed
+# pymongo>=4.0
+# pymongo[srv]
+# dnspython>=2.0
 
-# dev requirements -
+# Development requirements
+pytest>=7.1.3
+tox>=3.25.1
+black>=22.8.0
+flake8>=5.0.4
+mypy>=0.971
 
-pytest==7.1.3
-tox==3.25.1
-black==22.8.0
-flake8==5.0.4
-mypy==0.971
-
+# Editable install for local development
 -e .
