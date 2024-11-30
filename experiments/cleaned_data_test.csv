@@ -1,0 +1,28 @@
+Date,State,CONTRIBUTOR ID,LGA,Outlet Type,Latitude,Longitude,Country,Sector,Food Item,UOM,Quantity,Price Category,Price,Weight,UPRICE
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Maize yellow,1.3,2.0,Wholesale,1000.0,2.6,384.62
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Maize yellow,1.3,2.0,Retail,1200.0,2.6,461.54
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Maize yellow,0.16,3.0,Retail,150.0,0.48,312.5
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Maize white,1.3,2.0,Wholesale,1000.0,2.6,384.62
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Maize white,1.3,2.0,Retail,1200.0,2.6,461.54
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Maize white,0.16,2.0,Retail,150.0,0.32,468.75
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Sorghum,1.5,2.0,Wholesale,1000.0,3.0,333.33
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Sorghum,1.5,1.0,Retail,1100.0,1.5,733.33
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Sorghum,0.15,2.0,Retail,200.0,0.3,666.67
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Local rice,1.4,2.0,Wholesale,2000.0,2.8,714.29
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Local rice,1.4,2.0,Retail,2100.0,2.8,750.0
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Local rice,0.17,2.0,Retail,250.0,0.34,735.29
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Brown beans,1.4,2.0,Wholesale,2500.0,2.8,892.86
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Brown beans,1.4,2.0,Retail,3500.0,2.8,1250.0
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Brown beans,0.2,2.0,Retail,400.0,0.4,1000.0
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,White beans,1.4,2.0,Wholesale,2500.0,2.8,892.86
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,White beans,1.4,2.0,Retail,2700.0,2.8,964.29
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,White beans,0.2,2.0,Retail,400.0,0.4,1000.0
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Garri confirm,1.4,2.0,Wholesale,800.0,2.8,285.71
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Garri confirm,1.4,2.0,Retail,900.0,2.8,321.43
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Garri confirm,0.17,3.0,Retail,100.0,0.51,196.08
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Yam confirm,1.0,5.0,Wholesale,800.0,5.0,160.0
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Yam confirm,1.0,2.0,Retail,700.0,2.0,350.0
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Yam confirm,1.0,1.0,Retail,1000.0,1.0,1000.0
+2024-11-27,NASARAWA,9,KARU,Open air or covered market,9.0213661,7.609329,Nigeria,Urban,Soyabeans,1.4,1.0,Wholesale,1700.0,1.4,1214.29
+2024-11-27,NASARAWA,9,KARU,RoadSide shops street vendors,9.021569,7.609686,Nigeria,Urban,Soyabeans,1.4,2.0,Retail,1500.0,2.8,535.71
+2024-11-27,NASARAWA,9,KARU,Neighborhood shops kiosk,9.0213805,7.609474,Nigeria,Urban,Soyabeans,0.2,1.0,Retail,200.0,0.2,1000.0
