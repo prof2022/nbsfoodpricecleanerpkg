@@ -3,7 +3,7 @@ from src.nbsfoodpricecleaner.data_cleaner import NBSFoodPriceCleaner
 def main():
     # Initialize the cleaner with input and output file paths
     cleaner = NBSFoodPriceCleaner(
-        input_filepath=r"D:\gigs\nbs\NBS_Crowdsource_Food_Price_Form.csv",  # Replace with the actual raw data CSV path
+        input_filepath=r"D:\gigs\nbs\NBS_Crowdsource_Food_Price_Form_27th.csv",  # Replace with the actual raw data CSV path
         output_filepath="cleaned_data.csv"
     )
 
