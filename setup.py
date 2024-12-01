@@ -4,9 +4,9 @@ from typing import List
 with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
-__version__ = "0.0.4"
+__version__ = "0.0.1"
 REPO_NAME = "nbsfoodpricecleanerpkg"
-PKG_NAME = "nbsfoodpricecleaner"
+PKG_NAME = "NBSfoodpricecleaner"
 AUTHOR_USER_NAME = "prof2022"
 AUTHOR_EMAIL = "jibrinharuna07@gmail.com"
 
