@@ -64,8 +64,8 @@ from src.nbsfoodpricecleaner.data_cleaner import NBSFoodPriceCleaner
 def main():
     # Initialize the cleaner with input and output file paths
     cleaner = NBSFoodPriceCleaner(
-        input_filepath=r"D:\gigs\nbs\raw_data\NBS_Crowdsource_Food_Price_Form_30TH NOV.csv",  # Replace with the actual raw data CSV path
-        output_filepath=r"D:\gigs\nbs\cleaned_data\cleaned_data_nov30.csv"
+        input_filepath=r"D:\gigs\nbs\raw_data\NBS_Crowdsource_Food_Price_Form_6th DEC.csv",  # Replace with the actual raw data CSV path
+        output_filepath=r"D:\gigs\nbs\cleaned_data\cleaned_data_dec6.csv"
     )
 
     # Load the raw data
@@ -86,11 +86,11 @@ def main():
 
     # Save the invalid data
     print("Saving invalid data...")
-    cleaner.save_invalid_data(r"D:\gigs\nbs\cleaned_data\invalid_records_nov30.csv")
+    cleaner.save_invalid_data(r"D:\gigs\nbs\cleaned_data\invalid_records_dec6.csv")
 
     # Generate and save submission details to a specified file
     print("Generating contributor details...")
-    cleaner.count_submissions_per_contributor(output_filepath=r"D:\gigs\nbs\cleaned_data\contributor_details_nov30.csv")
+    cleaner.count_submissions_per_contributor(output_filepath=r"D:\gigs\nbs\cleaned_data\contributor_details_dec6.csv")
 
     print("Data cleaning process completed successfully!")
 
