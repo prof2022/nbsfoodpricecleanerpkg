@@ -1106,7 +1106,7 @@ class NBSFoodPriceCleaner:
              "Maize white": (500.00, 3600.00),
              "Maize yellow": (500.00, 3600.00),
              "Sorghum": (628.00, 2100.00),
-             "Soyabeans": (1200.00, 3000.00),
+             "Soyabeans": (1100.00, 3000.00),
              "Yam": (1100.00, 3500.00),
         }
 
