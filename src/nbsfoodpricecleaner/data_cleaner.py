@@ -168,7 +168,7 @@
 
 #                 # Clean outlet type
 #                 temp_df["Outlet Type"] = temp_df["Outlet Type"].str.replace("_", " ", regex=False)
-                
+
 #                 # Create Cont_ID_Count
 #                 temp_df["Cont_ID_Count"] = temp_df["State"] + temp_df["CONTRIBUTOR ID"].astype(str)
 
@@ -407,7 +407,7 @@
 
 #                 # Clean outlet type
 #                 temp_df["Outlet Type"] = temp_df["Outlet Type"].str.replace("_", " ", regex=False)
-                
+
 #                 # Create Contributor_State_ID
 #                 temp_df["Contributor_State_ID"] = temp_df["State"] + temp_df["Contributor_ID"].astype(str)
 
@@ -528,7 +528,7 @@
 #         Check for and remove duplicate rows in the dataset.
 
 #         Args:
-#             subset (Optional[List[str]]): List of columns to check for duplicates. 
+#             subset (Optional[List[str]]): List of columns to check for duplicates.
 #                                           If None, checks for duplicates across all columns.
 #         """
 #         if self.data is None:
@@ -800,8 +800,8 @@
 
 #         print(f"Valid records retained: {self.data.shape[0]}")
 #         print(f"Invalid records separated: {self.invalid_data.shape[0]}")
-    
-    
+
+
 #     def save_cleaned_data(self) -> None:
 #         """
 #         Save the cleaned data to the specified output file.
@@ -824,9 +824,6 @@
 
 
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
 from typing import Optional, Dict, List
 
 
@@ -847,7 +844,7 @@ class NBSFoodPriceCleaner:
         self.output_filepath = output_filepath
         self.data: Optional[pd.DataFrame] = None
         self.invalid_data: Optional[pd.DataFrame] = None
-        self.cleaning_log: List[str] = []  # To track cleaning steps
+        self.cleaning_log: List[str] = []
 
     def load_data(self) -> None:
         """
@@ -870,18 +867,16 @@ class NBSFoodPriceCleaner:
         Check for and remove duplicate rows in the dataset.
 
         Args:
-            subset (Optional[List[str]]): List of columns to check for duplicates. 
+            subset (Optional[List[str]]): List of columns to check for duplicates.
                                           If None, checks for duplicates across all columns.
         """
         if self.data is None:
             raise ValueError("Data is not loaded. Use `load_data()` to load the data first.")
 
-        # Count duplicates
         duplicate_count = self.data.duplicated(subset=subset).sum()
         print(f"Number of duplicate rows found: {duplicate_count}")
 
-        # Remove duplicates
-        self.data = self.data.drop_duplicates(subset=subset, keep='first').reset_index(drop=True)
+        self.data = self.data.drop_duplicates(subset=subset, keep="first").reset_index(drop=True)
         print("Duplicate rows have been removed.")
 
     def clean_data(self) -> None:
@@ -891,10 +886,8 @@ class NBSFoodPriceCleaner:
         if self.data is None:
             raise ValueError("Data is not loaded. Use `load_data()` to load the data first.")
 
-        # Step 1: Check and remove duplicates
         self.check_duplicates()
 
-        # Step 2: Drop irrelevant columns
         columns_to_drop: List[str] = [
             "_tags",
             "_notes",
@@ -913,7 +906,6 @@ class NBSFoodPriceCleaner:
         ]
         self.data.drop(columns=columns_to_drop, errors="ignore", inplace=True)
 
-        # Rename columns for consistency
         self.data.rename(
             columns={
                 "today": "Date",
@@ -928,10 +920,8 @@ class NBSFoodPriceCleaner:
             inplace=True,
         )
 
-        # Add default country
         self.data["Country"] = "Nigeria"
 
-        # Map food items to their respective columns
         food_mapping: Dict[str, Dict[str, str]] = {
             "g_consent/Section_B1/maize_yellow": {
                 "uom": "g_consent/Section_B1/uom_Ymaize",
@@ -985,7 +975,6 @@ class NBSFoodPriceCleaner:
             },
         }
 
-        # Prepare long-format data
         long_format_data: List[pd.DataFrame] = []
         for food_col, mapping in food_mapping.items():
             uom_col = mapping["uom"]
@@ -1011,31 +1000,21 @@ class NBSFoodPriceCleaner:
                 temp_df["Quantity"] = pd.to_numeric(self.data[quantity_col], errors="coerce")
                 temp_df["Price"] = pd.to_numeric(self.data[price_col], errors="coerce")
 
-                # Calculate weight as Quantity * UOM (numeric part)
                 temp_df["Weight"] = temp_df["Quantity"] * temp_df["UOM"].str.extract(r"(\d+\.?\d*)")[0].astype(float)
-
-                # Calculate unit price
                 temp_df["UPRICE"] = (temp_df["Price"] / temp_df["Weight"]).round(2)
                 temp_df["Price Category"] = self.data.get("g_consent/Section_A/price_category", None)
 
-                # Clean outlet type
                 temp_df["Outlet Type"] = temp_df["Outlet Type"].str.replace("_", " ", regex=False)
-
-                # Rename "yam confirm" to "yam" and "garri confirm" to "garri"
                 temp_df["Food Item"] = temp_df["Food Item"].replace({"Yam confirm": "Yam", "Garri confirm": "Garri"})
 
                 long_format_data.append(temp_df)
-
-                # Create Contributor_State_ID
                 temp_df["Contributor_State_ID"] = temp_df["State"] + "_" + temp_df["Contributor_ID"].astype(str)
 
-        # Combine the cleaned data
         if long_format_data:
             self.data = pd.concat(long_format_data, ignore_index=True)
         else:
             raise ValueError("No valid data found to clean.")
 
-        # Reorder columns
         column_order = [
             "Date",
             "State",
@@ -1057,25 +1036,18 @@ class NBSFoodPriceCleaner:
         ]
         self.data = self.data[column_order]
 
-        # Print missing values count and percentage
         missing_count = self.data.isna().sum()
         total_rows = len(self.data)
         missing_percentage = (missing_count / total_rows) * 100
 
         print("Missing values summary (counts and percentages):")
-        print(pd.DataFrame({
-            "Missing Count": missing_count,
-            "Missing Percentage (%)": missing_percentage.round(2)
-        }))
+        print(pd.DataFrame({"Missing Count": missing_count, "Missing Percentage (%)": missing_percentage.round(2)}))
 
-        # Print summary statistics
         print("\nSummary statistics of the dataset:")
         print(self.data.describe().transpose())
 
-        # Convert 'Date' to datetime
         self.data["Date"] = pd.to_datetime(self.data["Date"], errors="coerce")
 
-        # Drop rows with missing essential values
         essential_cols = [
             "State",
             "LGA",
@@ -1094,47 +1066,43 @@ class NBSFoodPriceCleaner:
     def apply_uprice_bands(self) -> None:
         """
         Filter the dataset to retain only rows with UPRICE within the defined bands for each food item.
-        Separates invalid records into a different DataFrame.
         """
-        # Define the lower and upper bands for each food item
+        if self.data is None:
+            raise ValueError("Data is not loaded. Run `clean_data()` first.")
+
         uprice_bands = {
-             "Brown beans": (1489.70, 3081.72),
-             "White beans": (1489.70, 3081.72),
-             "Garri": (578.89, 1135.39),
-             "Local rice": (1200.00, 3500.00),
-             "Imported rice": (1500.00, 3628.70),
-             "Maize white": (500.00, 3600.00),
-             "Maize yellow": (500.00, 3600.00),
-             "Sorghum": (628.00, 2100.00),
-             "Soyabeans": (1100.00, 3000.00),
-             "Yam": (1100.00, 3500.00),
+            "Brown beans": (1489.70, 3081.72),
+            "White beans": (1489.70, 3081.72),
+            "Garri": (578.89, 1135.39),
+            "Local rice": (1200.00, 3500.00),
+            "Imported rice": (1500.00, 3628.70),
+            "Maize white": (500.00, 3600.00),
+            "Maize yellow": (500.00, 3600.00),
+            "Sorghum": (628.00, 2100.00),
+            "Soyabeans": (1100.00, 3000.00),
+            "Yam": (1100.00, 3500.00),
         }
 
-        # Initialize lists for valid and invalid rows
         valid_data = []
         invalid_data = []
 
         for food_item, (lower_band, upper_band) in uprice_bands.items():
-            # Select valid rows for the current food item
             valid_rows = self.data[
                 (self.data["Food Item"] == food_item)
                 & (self.data["UPRICE"] >= lower_band)
                 & (self.data["UPRICE"] <= upper_band)
             ]
 
-            # Select invalid rows for the current food item
             invalid_rows = self.data[
                 (self.data["Food Item"] == food_item)
                 & ~((self.data["UPRICE"] >= lower_band) & (self.data["UPRICE"] <= upper_band))
             ]
 
-            # Append to respective lists
             valid_data.append(valid_rows)
             invalid_data.append(invalid_rows)
 
-        # Combine all valid and invalid rows into separate DataFrames
-        self.data = pd.concat(valid_data, ignore_index=True)  # Valid records
-        self.invalid_data = pd.concat(invalid_data, ignore_index=True)  # Invalid records
+        self.data = pd.concat(valid_data, ignore_index=True)
+        self.invalid_data = pd.concat(invalid_data, ignore_index=True)
 
         print(f"Valid records retained: {self.data.shape[0]}")
         print(f"Invalid records separated: {self.invalid_data.shape[0]}")
@@ -1142,16 +1110,10 @@ class NBSFoodPriceCleaner:
     def count_submissions_per_contributor(self, output_filepath: str = "contributor_details.csv") -> None:
         """
         Count the number of rows submitted by each contributor (VC_ID).
-        Reload the raw data to include additional specified columns in the output CSV
-        with renamed columns for better readability.
-
-        Args:
-            output_filepath (str): Path to save the submission details CSV file.
         """
         if self.input_filepath is None:
             raise ValueError("Input file path is not specified.")
 
-        # Reload the raw data
         try:
             raw_data = pd.read_csv(self.input_filepath)
             print("Raw data reloaded successfully.")
@@ -1162,7 +1124,6 @@ class NBSFoodPriceCleaner:
         except Exception as e:
             raise Exception(f"An error occurred while loading raw data: {e}")
 
-        # Rename columns for clarity
         rename_mapping = {
             "g_consent/Section_A/market_type": "Outlet Type",
             "g_consent/Section_A/price_category": "Price Category",
@@ -1183,7 +1144,6 @@ class NBSFoodPriceCleaner:
         }
         raw_data.rename(columns=rename_mapping, inplace=True)
 
-        # List of additional columns to include in the output
         additional_columns = [
             "today",
             "_submission_time",
@@ -1211,23 +1171,13 @@ class NBSFoodPriceCleaner:
             "_version",
         ]
 
-        # Ensure additional columns exist in the raw dataset
         valid_columns = [col for col in additional_columns if col in raw_data.columns]
-        if not valid_columns:
-            print("No valid additional columns found in the raw dataset.")
-            return
-        else:
-            # Filter valid columns for the output
+        if valid_columns:
             submission_details = raw_data[["VC_ID"] + valid_columns].drop_duplicates()
-
-        # Print the results
-        # print("Total Submissions per Contributor (VC_ID):")
-        # print(submission_details)
-
-        # Save the details to the specified file
-        submission_details.to_csv(output_filepath, index=False)
-        print(f"Contributor details have been saved to '{output_filepath}'")
-
+            submission_details.to_csv(output_filepath, index=False)
+            print(f"Contributor details have been saved to '{output_filepath}'")
+        else:
+            print("No valid additional columns found in the raw dataset.")
 
     def save_cleaned_data(self) -> None:
         """
@@ -1248,4 +1198,3 @@ class NBSFoodPriceCleaner:
 
         self.invalid_data.to_csv(invalid_filepath, index=False)
         print(f"Invalid data saved to {invalid_filepath}")
-

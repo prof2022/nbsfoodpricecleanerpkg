@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
-Name: nbsfoodpricecleaner
-Version: 0.0.4
+Name: NBSfoodpricecleaner
+Version: 0.0.1
 Summary: A Python package for cleaning and processing NBS food price data.
 Home-page: https://github.com/prof2022/nbsfoodpricecleanerpkg
 Author: prof2022

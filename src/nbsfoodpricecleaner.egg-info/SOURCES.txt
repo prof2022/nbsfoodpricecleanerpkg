@@ -2,6 +2,11 @@ README.md
 pyproject.toml
 setup.cfg
 setup.py
+src/NBSfoodpricecleaner.egg-info/PKG-INFO
+src/NBSfoodpricecleaner.egg-info/SOURCES.txt
+src/NBSfoodpricecleaner.egg-info/dependency_links.txt
+src/NBSfoodpricecleaner.egg-info/requires.txt
+src/NBSfoodpricecleaner.egg-info/top_level.txt
 src/nbsfoodpricecleaner/__init__.py
 src/nbsfoodpricecleaner/data_cleaner.py
 src/nbsfoodpricecleaner.egg-info/PKG-INFO
