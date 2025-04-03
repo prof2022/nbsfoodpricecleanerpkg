@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 __version__ = "0.0.2"
 REPO_NAME = "nbsfoodpricecleanerpkg"
-PKG_NAME = "NBSfoodpricecleaner"
+PKG_NAME = "nbsfoodpricecleaner"
 AUTHOR_USER_NAME = "prof"
 AUTHOR_EMAIL = "jibrinharuna07@gmail.com"
 
